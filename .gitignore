@@ -128,8 +128,3 @@ dmypy.json
 # Pyre type checker
 .pyre/
 .ipynb_checkpoints
-*/.ipynb_checkpoints/*
-src/.ipynb_checkpoints
-checkpoint.ipynb
-.ipynb_checkpoint/
-**/.ipynb_checkpoint/

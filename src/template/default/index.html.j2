@@ -1,0 +1,102 @@
+{%- extends 'lab/index.html.j2' -%}
+
+{%- block html_head_css -%}
+  {{ super() }}
+
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+	integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+	crossorigin="anonymous"></script>
+
+<script>
+$(document).ready(function() {          
+    $('.code_shower').on('click',function(){
+	var header = $(this);
+	var codecell = $(this).next()
+        codecell.slideToggle(0, function() {
+		if (codecell.is(':hidden')) {
+			header.text("Show Code");
+			header.css("border-radius", "2px 2px 2px 2px");
+		} else {
+			header.text("Hide Code");
+			header.css("border-radius", "2px 2px 0px 0px")
+		}
+	});
+    });
+    $('.hidden_default').next().hide();
+});
+</script>
+
+
+  <style>
+    @font-face {
+      font-family: 'Roboto';
+      font-style: normal;
+      font-weight: 400;
+      src: url(https://fonts.googleapis.com/css?family=Roboto);
+    }
+    h1, h2, h3 {
+      font-family: "Roboto", sans-serif
+    }
+    .header {
+      overflow: hidden;
+      background-color: #f1f1f1;
+      padding: 20px 10px;
+    }
+    .logo-container {
+      margin: auto;
+      width: fit-content;
+    }
+    body {
+      background-color: #f1f1f1 !important;
+    }
+
+    .jp-Notebook {
+      padding: 20px 10px;
+      margin: 20px 150px;
+      background: white !important
+      border-radius: 4px;
+    }
+
+
+
+    div.input {
+	flex-direction: column !important;
+}
+div.input_area {
+	border-radius: 0px 0px 2px 2px;
+}
+div.code_shower {
+	background: lightgray;
+	padding: 5px 10px;
+	cursor: pointer;
+	border-radius: 2px 2px 0px 0px;
+}
+
+
+  </style>
+{%- endblock html_head_css -%}
+
+{% block body_header %}
+  <body class="">
+  <div class="header">
+    <div class="logo-container">
+      {% include 'logo-no-background.svg' %}
+    </div>
+  </div>
+  <div class="jp-Notebook theme-light" style="padding: 20px; margin: 20px;">
+{% endblock body_header %}
+
+{% block input %}
+{% if 'code_shown' in cell['metadata'].get('tags', []) %}
+	<div class="code_shower">Hide Code</div>
+{% else %}
+    	<div class="code_shower hidden_default">Show Code</div>
+{% endif %}
+
+{{ super() }}
+{% endblock input %}
+
+{% block body_footer %}
+  </div>
+  </body>
+{% endblock body_footer %}
