@@ -1,0 +1,23 @@
+name: Publish Website
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.9.15
+          architecture: x64
+
+      - name: Setup environment
+        run: make install
+
+      - name: Build static site
+        run: |
+          source .venv/bin/activate
+          make dist
