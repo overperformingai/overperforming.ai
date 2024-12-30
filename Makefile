@@ -1,11 +1,10 @@
 SHELL := /bin/bash
 
 install:
-	python3.9 -m venv .venv \
+	python3.10 -m venv .venv \
 	&& source .venv/bin/activate \
 	&& pip install -r requirements.txt \
-	&& jupyter contrib nbextension install --user \
-	&& jupyter labextension install jupyterlab-plotly
+	&& npm i jupyterlab-plotly
 
 activate:
 	source .venv/bin/activate
@@ -19,7 +18,7 @@ install-template:
 	&& cp src/template/default/* .venv/share/jupyter/nbconvert/templates/overperformingai/
 
 dist: activate install-template
-	.venv/bin/python3.9 -m jupyter nbconvert src/index.ipynb --execute --output ../dist/index.html --template overperformingai --to html --TagRemovePreprocessor.remove_input_tags='{"remove_cell"}'
+	.venv/bin/python3.10 -m jupyter nbconvert src/index.ipynb --execute --output ../dist/index.html --template overperformingai --to html --TagRemovePreprocessor.remove_input_tags='{"remove_cell"}'
 
 setup-py39:
 	sudo apt-get update \
