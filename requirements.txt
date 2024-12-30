@@ -1,10 +1,10 @@
 pip==22.3.1
-jupyterlab
+jupyterlab==3.6.3
+jupyterlab-widgets==3.0.7
 pandas==1.5.2
 plotly==5.11.0
 pytorch_lightning==1.8.3
 jupyter-contrib-nbextensions==0.7.0
 matplotlib==3.6.2
 shap==0.41.0
-torchmetrics
-IPython
+ipython==8.12.0
